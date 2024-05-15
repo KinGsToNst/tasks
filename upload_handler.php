@@ -21,7 +21,6 @@ $unique_name=uniqid();
 //получаем тип файла
 $file_ext = pathinfo($file_name, PATHINFO_EXTENSION);
 
-// и записываем путь уникальное имя и тип файла
  $new_file_name=$unique_name.'.'.$file_ext;
 move_uploaded_file($file_tmp,$upload_dir.$new_file_name);
 
