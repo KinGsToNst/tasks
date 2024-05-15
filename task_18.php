@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,6 +41,16 @@
                                 <div class="panel-content">
                                     <div class="form-group">
                                         <form action="upload_handler_multi.php" method="post" enctype="multipart/form-data" >
+                                            <?php if(!empty($_SESSION['danger'])): ?>
+                                                <div class="alert alert-danger fade show" role="alert">
+                                                    <?php  echo $_SESSION['danger']; unset($_SESSION['danger']);?>
+                                                </div>
+                                            <?php endif;?>
+                                            <?php if(!empty($_SESSION['success'])): ?>
+                                                <div class="alert alert-success fade show" role="alert">
+                                                    <?php  echo $_SESSION['success']; unset($_SESSION['success']);?>
+                                                </div>
+                                            <?php endif;?>
                                             <div class="form-group">
                                                 <label class="form-label" for="simpleinput">Image</label>
                                             <input type="file" name="image[]" id="simpleinput" class="form-control" multiple>
@@ -71,7 +84,7 @@
                                         $host = 'localhost'; // имя сервера базы данных
                                         $dbname = 'tasks'; // имя базы данных
                                         $username = 'root'; // имя пользователя базы данных
-                                        $pass = ''; // пароль пользователя базы данных
+                                        $pass = 'root'; // пароль пользователя базы данных
                                         $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $pass);
 
 
@@ -89,8 +102,7 @@
                                         ?>
                                         <div class="col-md-3 image">
                                             <img src="upload_image/<?=$image["image_name"]?>">
-                                            <a class="btn btn-danger" href="task_18.php?=<?=$image["id"]?>" onclick="confirm('Вы уверены?');">Удалить</a>
-                                        </div>
+                                            <a class="btn btn-danger" href="delete_image_18.php?id=<?=$image["id"]?>" onclick="return confirm('Вы уверены?');">Удалить</a></div>
 
                                         <?php endforeach;?>
                                     </div>
