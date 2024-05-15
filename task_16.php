@@ -1,6 +1,6 @@
 <?php
 session_start();
-var_dump($_SESSION);
+
 if(empty($_SESSION["user_email"]) && empty($_SESSION["loggedin"])){
     header("location: auth.php");
     exit;

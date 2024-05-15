@@ -6,7 +6,7 @@ $password=$_POST['password'];
 $host = 'localhost'; // имя сервера базы данных
 $dbname = 'tasks'; // имя базы данных
 $username = 'root'; // имя пользователя базы данных
-$password = ''; // пароль пользователя базы данных
+$password = 'root'; // пароль пользователя базы данных
 $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
 
 

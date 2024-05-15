@@ -1,12 +1,29 @@
 <?php
 session_start();
+
+// Текст, который нужно проверить
+
+
+// Регулярное выражение для проверки формата электронной почты
+
+
+// Проверка текста на соответствие формату электронной почты
+
+
 if(!empty($_POST['email']) && !empty($_POST['password'])){
+    $pattern = '/^\S+@\S+\.\S+$/';
+    if (preg_match($pattern, $_POST['email'])) {
+
+
+
+
+
     $email=$_POST['email'];
     $password=$_POST['password'];
     $host = 'localhost'; // имя сервера базы данных
     $dbname = 'tasks'; // имя базы данных
     $username = 'root'; // имя пользователя базы данных
-    $pass = ''; // пароль пользователя базы данных
+    $pass = 'root'; // пароль пользователя базы данных
     $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $pass);
 
 
@@ -47,6 +64,13 @@ if($result==true){
         echo "Данные успешно добавлены";
         header("Location:/task_16.php");
     }
+    } else {
+        $message="Email адрес некорректный.";
+        $_SESSION['danger']=$message;
+        header('location:/auth.php');
+        exit;
+    }
+
 
 }else{
     $message='войдите или создайте нового пользователя';
